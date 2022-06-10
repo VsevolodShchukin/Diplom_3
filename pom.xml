@@ -40,7 +40,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>4.12</version>
+        </dependency>
+        <!-- модуль взаимодействия Allure и Junit -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>${allure.version}</version>
         </dependency>
         <!--Тег scope указывает на область видимости зависимости: она видна только тестовым классам в директории src/test/java-->
         <!-- https://mvnrepository.com/artifact/org.openqa.selenium/selenium-rc -->

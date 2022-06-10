@@ -1,7 +1,7 @@
-package ru.yandex.stellarburger.helper.BaseMethods;
+package ru.yandex.stellarburger.helpers.BaseMethods;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import ru.yandex.stellarburger.models.UserModel;
+import ru.yandex.stellarburger.helpers.models.UserModel;
 
 public class UserMethods {
 

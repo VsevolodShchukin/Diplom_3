@@ -1,16 +1,16 @@
-package ru.yandex.stellarburger.helper.API;
+package ru.yandex.stellarburger.helpers.API;
 
 import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import ru.yandex.stellarburger.models.BaseModel;
-import ru.yandex.stellarburger.models.UserModel;
+import ru.yandex.stellarburger.helpers.models.BaseModel;
+import ru.yandex.stellarburger.helpers.models.UserModel;
 
 import static io.restassured.RestAssured.given;
 
-public class ApiRequests {
+public class ApiMethods {
 
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
 
@@ -21,7 +21,7 @@ public class ApiRequests {
                 .build();
     }
 
-    @Step("Send Post request")
+    @Step("Отправить POST запрос")
     public static Response sendPostRequest(BaseModel request, String url) {
         Response response = given()
                 .spec(getBaseSpec())
@@ -32,7 +32,7 @@ public class ApiRequests {
         return response;
     }
 
-    @Step("Send Delete request")
+    @Step("Отправить DELETE запрос")
     public static Response sendDeleteRequest(String url, String token) {
         Response response = given()
                 .spec(getBaseSpec())
@@ -43,15 +43,21 @@ public class ApiRequests {
         return response;
     }
 
-    @Step("Get user's token")
+    @Step("Получить токен пользователя")
     public static String getUsersToken(UserModel user) {
         String token = sendPostRequest(user, "/api/auth/login").body().path("accessToken").toString().split(" ")[1];
         return token;
     }
 
-    @Step("Delete user")
+    @Step("Зарегистрировать нового пользователя")
+    public static String registerUser(UserModel user) {
+        String token = sendPostRequest(user, "/api/auth/register").body().path("accessToken").toString().split(" ")[1];
+        return token;
+    }
+
+    @Step("Удалить пользователя")
     public static void deleteUser(String token){
-        ApiRequests.sendDeleteRequest("/api/auth/user", token);
+        ApiMethods.sendDeleteRequest("/api/auth/user", token);
     }
 
 

@@ -1,4 +1,4 @@
-package ru.yandex.stellarburger.models;
+package ru.yandex.stellarburger.helpers.models;
 
 public class UserModel implements BaseModel{
 
