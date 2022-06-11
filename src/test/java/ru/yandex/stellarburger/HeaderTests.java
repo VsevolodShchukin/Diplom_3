@@ -19,13 +19,12 @@ public class HeaderTests {
 
 
     UserModel user;
-    String token;
 
     @Before
     public void setUp() {
         System.out.println("Set up");
         user = UserMethods.generateRandomUser();
-        token = ApiMethods.registerUser(user);
+        ApiMethods.registerUser(user);
         LoginPage loginPage = open(LoginPage.url, LoginPage.class);
         loginPage.logIn(user.getEmail(), user.getPassword());
     }
@@ -33,11 +32,7 @@ public class HeaderTests {
     @After
     public void tearDown() {
         System.out.println("Tear down");
-        try {
-            ApiMethods.deleteUser(token);
-        } catch (Exception e) {
-            System.out.println("Пользователь не был удален");
-        }
+        ApiMethods.deleteUser(user);
     }
 
     @Test

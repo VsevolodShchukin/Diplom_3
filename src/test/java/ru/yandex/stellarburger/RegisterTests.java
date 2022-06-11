@@ -28,12 +28,7 @@ public class RegisterTests {
     @After
     public void tearDown() {
         System.out.println("Tear down");
-        try {
-            String token = ApiMethods.getUsersToken(user);
-            ApiMethods.deleteUser(token);
-        } catch (Exception e) {
-            System.out.println("Пользователь не был удален");
-        }
+        ApiMethods.deleteUser(user);
     }
 
 

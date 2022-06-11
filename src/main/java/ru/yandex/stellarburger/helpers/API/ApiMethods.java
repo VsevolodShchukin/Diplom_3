@@ -56,8 +56,14 @@ public class ApiMethods {
     }
 
     @Step("Удалить пользователя")
-    public static void deleteUser(String token){
-        ApiMethods.sendDeleteRequest("/api/auth/user", token);
+    public static void deleteUser(UserModel user){
+        try {
+            String token = ApiMethods.getUsersToken(user);
+            ApiMethods.sendDeleteRequest("/api/auth/user", token);
+        } catch (Exception e) {
+            System.out.println("Пользователь не был удален");
+        }
+
     }
 
 

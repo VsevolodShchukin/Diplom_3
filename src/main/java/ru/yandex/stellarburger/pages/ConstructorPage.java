@@ -2,8 +2,11 @@ package ru.yandex.stellarburger.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class ConstructorPage extends BasePage{
 
@@ -47,6 +50,12 @@ public class ConstructorPage extends BasePage{
     @Step("Нажать на кнопку {toLoginPageButton}")
     public void clickOnToLoginPageButton() {
         toLoginPageButton.click();
+    }
+
+    @Step("Проверить, что выбран селект - {name}")
+    public boolean checkCurrentSelectInConstructor(String name) {
+        return $(By.xpath("//div[contains(@class, 'current') and //span[contains(text(), '" + name + "')]]")).exists();
+
     }
 
 }
